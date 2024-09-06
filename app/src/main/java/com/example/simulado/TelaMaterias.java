@@ -7,8 +7,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.simulado.adapter.AdapterList;
+import com.example.simulado.helper.ModelDAO;
+import com.example.simulado.model.Materias;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TelaMaterias extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private List<Materias> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +32,19 @@ public class TelaMaterias extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        recyclerView = findViewById(R.id.recyclerMaterias);
+
+        ModelDAO dao = new ModelDAO(TelaMaterias.this);
+
+        list = dao.listar();
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(TelaMaterias.this));
+        recyclerView.setHasFixedSize(true);
+
+        AdapterList adapterList = new AdapterList(list, TelaMaterias.this);
+
+        recyclerView.setAdapter(adapterList);
+
     }
 }
