@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.simulado.Manifest;
+
 import com.example.simulado.R;
 import com.example.simulado.model.Materias;
 
