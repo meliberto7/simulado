@@ -1,6 +1,5 @@
 package com.example.simulado;
 
-import android.app.VoiceInteractor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +26,6 @@ public class TelaLogin extends AppCompatActivity {
     private EditText editEmail, editSenha;
     private Button buttonEntrar;
     private int cont = 0;
-    private boolean very = false;
     private BiometricPrompt biometricPrompt;
 
     @Override
@@ -44,10 +42,6 @@ public class TelaLogin extends AppCompatActivity {
         editEmail = findViewById(R.id.editEmail);
         editSenha = findViewById(R.id.editSenha);
         buttonEntrar = findViewById(R.id.buttonEntrar);
-
-
-
-        if (Global.isLogado()) {
 
             BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
                     .setTitle("Validação Biometrica")
@@ -67,7 +61,12 @@ public class TelaLogin extends AppCompatActivity {
                 @Override
                 public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                     super.onAuthenticationSucceeded(result);
+
                     Toast.makeText(TelaLogin.this, "Sucesso", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(TelaLogin.this, TelaMaterias.class);
+                    startActivity(intent);
+                    finish();
+
                 }
 
                 @Override
@@ -87,8 +86,6 @@ public class TelaLogin extends AppCompatActivity {
 
             biometricPrompt.authenticate(promptInfo);
 
-        }
-
         buttonEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,8 +96,6 @@ public class TelaLogin extends AppCompatActivity {
                 ModelDAO dao = new ModelDAO(TelaLogin.this);
 
                 if (dao.logar(email, senha)) {
-
-                    Global.setLogado(true);
 
                     Intent intent = new Intent(TelaLogin.this, TelaMaterias.class);
                     startActivity(intent);
