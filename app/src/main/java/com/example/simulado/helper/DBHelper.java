@@ -18,14 +18,19 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String sql = "CREATE TABLE usuarios(" +
-                "id_usuario int primary key autoincrement," +
+                "id_usuario INTEGER primary key autoincrement," +
                 "nome varchar(100)," +
                 "cidade varchar(50)," +
                 "curso varchar(100)," +
                 "email varchar(100)," +
                 "senha varchar(100))";
 
+        String sql2 = "CREATE TABLE materias(" +
+                "id_materia INTEGER primary key autoincrement," +
+                "nome)";
+
         db.execSQL(sql);
+        db.execSQL(sql2);
 
     }
 
@@ -33,8 +38,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         String sql = "DROP TABLE IF EXISTS usuarios";
+        String sql2 = "DROP TABLE IF EXISTS materias";
 
         db.execSQL(sql);
+        db.execSQL(sql2);
         onCreate(db);
 
     }

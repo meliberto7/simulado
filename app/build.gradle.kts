@@ -33,6 +33,7 @@ android {
 
 dependencies {
 
+    implementation(libs.biometric)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

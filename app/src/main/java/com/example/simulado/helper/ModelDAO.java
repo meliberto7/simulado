@@ -26,7 +26,7 @@ public class ModelDAO {
 
             String sql = "SELECT * FROM usuarios WHERE email = ? AND senha = ?";
 
-            Cursor cursor = altera.rawQuery(sql, new String[]{email, senha});
+            Cursor cursor = le.rawQuery(sql, new String[]{email, senha});
 
             if (cursor.moveToNext()) {
 
