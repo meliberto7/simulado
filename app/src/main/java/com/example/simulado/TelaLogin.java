@@ -1,6 +1,8 @@
 package com.example.simulado;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -28,7 +30,21 @@ public class TelaLogin extends AppCompatActivity {
             return insets;
         });
 
-        editEmail = findViewById()
+        editEmail = findViewById(R.id.editEmail);
+        editSenha = findViewById(R.id.editSenha);
+        buttonEntrar = findViewById(R.id.buttonEntrar);
+
+        String email = editEmail.getText().toString().trim();
+        String senha = editSenha.getText().toString().trim();
+
+        buttonEntrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+            }
+        });
 
     }
 }
